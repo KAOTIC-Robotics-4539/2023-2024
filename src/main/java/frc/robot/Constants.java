@@ -12,11 +12,16 @@ import frc.lib.util.SwerveModuleConstants;
 
 public final class Constants {
     public static final double stickDeadband = 0.1;
-
+    public static final int lowerArmPort = 0; // TODO: Change port
+    public static final int upperArmPort = 0; // TODO: Change port
+    public static final double lowerArmMax = 181000;
+    public static final double upperArmMax = 335000;
+    public static final double lowerArmMin = 100;
+    public static final double upperArmMin = 100;
+    
     public static final class Swerve {
         public static final int pigeonID = 5;
         public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
-
         public static final COTSFalconSwerveConstants chosenModule =
             COTSFalconSwerveConstants.SDSMK4i(COTSFalconSwerveConstants.driveGearRatios.SDSMK4i_L2);
 
