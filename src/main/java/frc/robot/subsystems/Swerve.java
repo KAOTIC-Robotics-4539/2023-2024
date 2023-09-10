@@ -7,7 +7,7 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
-
+import com.revrobotics.CANSparkMax;
 import com.ctre.phoenix.sensors.Pigeon2;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -22,6 +22,8 @@ public class Swerve extends SubsystemBase {
     public SwerveDriveOdometry swerveOdometry;
     public SwerveModule[] mSwerveMods;
     public Pigeon2 gyro;
+    
+    private CANSparkMax m_intake;
 
     public Swerve() {
         gyro = new Pigeon2(Constants.Swerve.pigeonID);
@@ -112,6 +114,15 @@ public class Swerve extends SubsystemBase {
         }
     }
 
+    /**
+   * Function to set our intake's speed
+   *
+   * @param speed the desired speed
+   */
+    public void setIntake(double speed) {
+    m_intake.set(speed);
+  }
+    
     @Override
     public void periodic(){
         swerveOdometry.update(getYaw(), getModulePositions());  
