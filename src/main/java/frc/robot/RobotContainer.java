@@ -61,7 +61,7 @@ public class RobotContainer {
         /* Driver Buttons */
         final JoystickButton headOpen_start = new JoystickButton(coDriver, XboxController.Button.kRightBumper.value);  
         final JoystickButton headClose_Back = new JoystickButton(coDriver, XboxController.Button.kLeftBumper.value);
-        final JoystickButton resetButton = new JoystickButton(coDriver, XboxController.Button.kX.value);
+        final JoystickButton resetButton = new JoystickButton(driver, XboxController.Button.kX.value);
 
         headClose_Back.whileTrue(new setIntake(0.7, s_Swerve));
         headOpen_start.whileTrue(new setIntake(-0.5, s_Swerve));
