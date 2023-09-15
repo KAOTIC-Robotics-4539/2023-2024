@@ -18,6 +18,7 @@ public final class Constants {
     public static final double upperArmMax = 335000;
     public static final double lowerArmMin = 100;
     public static final double upperArmMin = 100;
+    public static final int intakePort = 4;
     
     public static final class Swerve {
         public static final int pigeonID = 5;

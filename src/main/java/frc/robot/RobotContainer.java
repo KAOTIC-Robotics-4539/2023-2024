@@ -45,7 +45,7 @@ public class RobotContainer {
                 () -> robotCentric.getAsBoolean()
             )
         );
-        m_lowerArm.setDefaultCommand(new lowerArmRun(() ->  driver.getLeftY(), m_lowerArm));
+        m_lowerArm.setDefaultCommand(new lowerArmRun(() ->  coDriver.getLeftY(), m_lowerArm));
         m_upperArm.setDefaultCommand(new upperArmRun(() ->  coDriver.getRightY(), m_upperArm));
         // Configure the button bindings
         configureButtonBindings();
