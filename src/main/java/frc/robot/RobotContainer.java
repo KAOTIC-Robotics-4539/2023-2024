@@ -1,5 +1,7 @@
 package frc.robot;
 
+import org.ejml.equation.Operation.ArrayExtent;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -62,10 +64,14 @@ public class RobotContainer {
         final JoystickButton headOpen_start = new JoystickButton(coDriver, XboxController.Button.kRightBumper.value);  
         final JoystickButton headClose_Back = new JoystickButton(coDriver, XboxController.Button.kLeftBumper.value);
         final JoystickButton resetButton = new JoystickButton(driver, XboxController.Button.kX.value);
+        //final JoystickButton armPickupButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+        //final JoystickButton armPickupButton2 = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
         headClose_Back.whileTrue(new setIntake(0.7, s_Swerve));
         headOpen_start.whileTrue(new setIntake(-0.5, s_Swerve));
         resetButton.onTrue(new ResetPosition(s_Swerve, m_lowerArm, m_upperArm));
+        //armPickupButton.onTrue(new upperArmGoTo(1, 170000, m_upperArm, false));
+        //armPickupButton2.onTrue(new lowerArmGoTo(1, 179000, m_lowerArm, false));
     }
 
     /**
