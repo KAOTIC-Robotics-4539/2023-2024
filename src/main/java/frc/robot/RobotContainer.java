@@ -60,7 +60,7 @@ public class RobotContainer {
                 s_Swerve, 
                 () -> driver.getRawAxis(translationAxis), 
                 () -> driver.getRawAxis(strafeAxis), 
-                () -> -driver.getRawAxis(rotationAxis), // possible fix for rotation
+                () -> driver.getRawAxis(rotationAxis), // possible fix for rotation
                 () -> robotCentric.getAsBoolean()
             )
         );
