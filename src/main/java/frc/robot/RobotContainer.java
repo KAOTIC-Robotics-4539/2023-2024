@@ -92,7 +92,7 @@ public class RobotContainer {
 
     private Command getPathPlannerCommand()
     {
-        List<PathPlannerTrajectory> pathGroup = PathPlanner.loadPathGroup("FullAuto", new PathConstraints(4, 3));
+        List<PathPlannerTrajectory> pathGroup = PathPlanner.loadPathGroup("New Path", new PathConstraints(4, 3));
         HashMap<String, Command> eventMap = new HashMap<>();
         // eventMap.put("marker1", new PrintCommand("Passed marker 1"));
 
