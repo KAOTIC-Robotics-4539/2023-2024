@@ -1,7 +1,5 @@
 package frc.robot;
 
-import org.ejml.equation.Operation.ArrayExtent;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -9,7 +7,13 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.autos.*;
 import frc.robot.commands.*;
+import frc.robot.commands.Arms.setIntake;
+import frc.robot.commands.Arms.lower.lRun;
+import frc.robot.commands.Arms.upper.uRun;
+import frc.robot.commands.drive.TeleopSwerve;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.Arms.lower;
+import frc.robot.subsystems.Arms.upper;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -31,8 +35,8 @@ public class RobotContainer {
     private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
-    public final lowerArm m_lowerArm = new lowerArm();
-    public final upperArm m_upperArm = new upperArm();
+    public final lower m_lowerArm = new lower();
+    public final upper m_upperArm = new upper();
 
 
 
@@ -47,8 +51,8 @@ public class RobotContainer {
                 () -> robotCentric.getAsBoolean()
             )
         );
-        m_lowerArm.setDefaultCommand(new lowerArmRun(() ->  coDriver.getLeftY(), m_lowerArm));
-        m_upperArm.setDefaultCommand(new upperArmRun(() ->  coDriver.getRightY(), m_upperArm));
+        m_lowerArm.setDefaultCommand(new lRun(() ->  coDriver.getLeftY(), m_lowerArm));
+        m_upperArm.setDefaultCommand(new uRun(() ->  coDriver.getRightY(), m_upperArm));
         // Configure the button bindings
         configureButtonBindings();
     }

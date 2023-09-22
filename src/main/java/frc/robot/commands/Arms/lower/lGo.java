@@ -1,17 +1,17 @@
-package frc.robot.commands;
+package frc.robot.commands.Arms.lower;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.lowerArm;
+import frc.robot.subsystems.Arms.lower;
 
-public class lowerArmGoTo extends CommandBase 
+public class lGo extends CommandBase 
 {
-    private final lowerArm m_lowerarm;
+    private final lower m_lowerarm;
     private double m_speed;
     private double m_target;
     private boolean m_resetEncoder;
     private boolean Finished;
 
-    public lowerArmGoTo(double speed, double target, lowerArm subsystem, boolean resetEncoder) 
+    public lGo(double speed, double target, lower subsystem, boolean resetEncoder) 
     {
         m_speed = speed;
         m_target = target;

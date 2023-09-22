@@ -1,17 +1,17 @@
-package frc.robot.commands;
+package frc.robot.commands.Arms.upper;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.upperArm;
+import frc.robot.subsystems.Arms.upper;
 
-public class upperArmGoTo extends CommandBase 
+public class uGo extends CommandBase 
 {
-    private final upperArm m_upperarm;
+    private final upper m_upperarm;
     private double m_speed;
     private double m_target;
     private boolean m_resetEncoder;
     private boolean Finished;
 
-    public upperArmGoTo(double speed, double target, upperArm subsystem, boolean resetEncoder) 
+    public uGo(double speed, double target, upper subsystem, boolean resetEncoder) 
     {
         m_speed = speed;
         m_target = target;

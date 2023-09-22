@@ -1,16 +1,16 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Swerve;
-import frc.robot.subsystems.lowerArm;
-import frc.robot.subsystems.upperArm;
+import frc.robot.subsystems.Arms.lower;
+import frc.robot.subsystems.Arms.upper;
 
 public class ResetPosition extends CommandBase 
 {
-    private final lowerArm m_lowerArm;
-    private final upperArm m_upperArm;
+    private final lower m_lowerArm;
+    private final upper m_upperArm;
     private final Swerve m_swerve;
 
-    public ResetPosition(Swerve mswerve, lowerArm larmsub, upperArm uarmsub) 
+    public ResetPosition(Swerve mswerve, lower larmsub, upper uarmsub) 
     {
         m_swerve = mswerve;
         m_lowerArm = larmsub;
