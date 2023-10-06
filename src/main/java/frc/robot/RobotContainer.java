@@ -74,6 +74,7 @@ public class RobotContainer {
         m_chooser.addOption("PCB BR", getPathPlannerCommand("PCB BR"));
         m_chooser.addOption("PCB RL", getPathPlannerCommand("PCB RL"));
         m_chooser.addOption("PCB RR", getPathPlannerCommand("PCB RR"));
+        m_chooser.addOption("Dont click unless you know what", getPathPlannerCommand("Accident"));
         //m_chooser.setDefaultOption("idk path", getPathPlannerCommand("New Path"));
         //m_chooser.addOption("Eric's Path", getPathPlannerCommand("Eric's Path"));
         //m_chooser.addOption("Turn 90 deg?", getPathPlannerCommand("90 turn"));
