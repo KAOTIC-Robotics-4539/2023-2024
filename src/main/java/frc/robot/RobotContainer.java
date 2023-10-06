@@ -11,6 +11,7 @@ import com.pathplanner.lib.auto.SwerveAutoBuilder;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.*;
@@ -65,8 +66,11 @@ public class RobotContainer {
         m_upperArm.setDefaultCommand(new uRun(() ->  coDriver.getRightY(), m_upperArm));
         // Configure the button bindings
         configureButtonBindings();
-        m_chooser.setDefaultOption("New Path", getPathPlannerCommand("New Path"));
+        SmartDashboard.putData("Auto Mode", m_chooser);
+        // To add a new option: The first string is whatever you want to call it, the second must be the exact name of the file without .path
+        m_chooser.setDefaultOption("idk path", getPathPlannerCommand("New Path"));
         m_chooser.addOption("Eric's Path", getPathPlannerCommand("Eric's Path"));
+        m_chooser.addOption("Turn 90 deg?", getPathPlannerCommand("90 turn"));
     }
 
     /**
@@ -99,6 +103,9 @@ public class RobotContainer {
                 // eventMap.put("marker1", new PrintCommand("Passed marker 1"));
                 break;
             case "Eric's Path":
+                break;
+            case "90 turn":
+                // add events
                 break;
             default:
                 break;
