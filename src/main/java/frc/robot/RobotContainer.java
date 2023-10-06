@@ -1,6 +1,4 @@
 package frc.robot;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,11 +10,9 @@ import com.pathplanner.lib.auto.SwerveAutoBuilder;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.commands.Arms.setIntake;
 import frc.robot.commands.Arms.lower.lRun;
@@ -49,7 +45,8 @@ public class RobotContainer {
     public final lower m_lowerArm = new lower();
     public final upper m_upperArm = new upper();
 
-
+    /* Auto List */
+    SendableChooser<Command> m_chooser = new SendableChooser<>();
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -66,6 +63,8 @@ public class RobotContainer {
         m_upperArm.setDefaultCommand(new uRun(() ->  coDriver.getRightY(), m_upperArm));
         // Configure the button bindings
         configureButtonBindings();
+        m_chooser.setDefaultOption("New Path", getPathPlannerCommand("New Path"));
+        m_chooser.addOption("Eric's Path", getPathPlannerCommand("Eric's Path"));
     }
 
     /**
@@ -90,12 +89,20 @@ public class RobotContainer {
     }
 
 
-    private Command getPathPlannerCommand()
+    private Command getPathPlannerCommand(String name)
     {
-        List<PathPlannerTrajectory> pathGroup = PathPlanner.loadPathGroup("New Path", new PathConstraints(4, 3));
+        List<PathPlannerTrajectory> pathGroup = PathPlanner.loadPathGroup(name, new PathConstraints(4, 3));
         HashMap<String, Command> eventMap = new HashMap<>();
-        // eventMap.put("marker1", new PrintCommand("Passed marker 1"));
-
+        switch (name){
+            case "New Path":
+                // eventMap.put("marker1", new PrintCommand("Passed marker 1"));
+                break;
+            case "Eric's Path":
+                break;
+            default:
+                break;
+        }
+       
 // Create the AutoBuilder. This only needs to be created once when robot code starts, not every time you want to create an auto command. A good place to put this is in RobotContainer along with your subsystems.
         SwerveAutoBuilder autoBuilder = new SwerveAutoBuilder(
             s_Swerve::getPose, // Pose2d supplier
@@ -117,8 +124,5 @@ public class RobotContainer {
      *
      * @return the command to run in autonomous
      */
-    public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
-        return getPathPlannerCommand();
-    }
+    public Command getAutonomousCommand() { return m_chooser.getSelected(); }
 }
