@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.autos.placeCone;
 import frc.robot.commands.*;
 import frc.robot.commands.Arms.setIntake;
 import frc.robot.commands.Arms.lower.lGo;
@@ -68,9 +69,16 @@ public class RobotContainer {
         configureButtonBindings();
         SmartDashboard.putData("Auto Mode", m_chooser);
         // To add a new option: The first string is whatever you want to call it, the second must be the exact name of the file without .path
-        m_chooser.setDefaultOption("idk path", getPathPlannerCommand("New Path"));
-        m_chooser.addOption("Eric's Path", getPathPlannerCommand("Eric's Path"));
-        m_chooser.addOption("Turn 90 deg?", getPathPlannerCommand("90 turn"));
+        m_chooser.setDefaultOption("Place Upper Cone", new placeCone(m_lowerArm, m_upperArm, s_Swerve));
+        m_chooser.addOption("PCB BL", getPathPlannerCommand("PCB BL"));
+        m_chooser.addOption("PCB BR", getPathPlannerCommand("PCB BR"));
+        m_chooser.addOption("PCB RL", getPathPlannerCommand("PCB RL"));
+        m_chooser.addOption("PCB RR", getPathPlannerCommand("PCB RR"));
+        //m_chooser.setDefaultOption("idk path", getPathPlannerCommand("New Path"));
+        //m_chooser.addOption("Eric's Path", getPathPlannerCommand("Eric's Path"));
+        //m_chooser.addOption("Turn 90 deg?", getPathPlannerCommand("90 turn"));
+        // preloaded cone place cone drive back far side of field
+        //m_chooser.addOption("Auto #1", getPathPlannerCommand("Auto 1"));
     }
 
     /**
@@ -103,12 +111,23 @@ public class RobotContainer {
                 // eventMap.put("marker1", new PrintCommand("Passed marker 1"));
                 break;
             case "Eric's Path":
+                // add events
                 break;
             case "90 turn":
                 // add events
+                eventMap.put("test1", new setIntake(0.20, s_Swerve));
+                eventMap.put("test2", new setIntake(0.0, s_Swerve));
+                break;
+            case "Auto 1":
+                // add events
+                eventMap.put("event1", new placeCone(m_lowerArm, m_upperArm, s_Swerve));
                 break;
             default:
                 break;
+        }
+        // catch all
+        if (name.contains("PCB ")){
+            eventMap.put("event1", new placeCone(m_lowerArm, m_upperArm, s_Swerve));
         }
        
 // Create the AutoBuilder. This only needs to be created once when robot code starts, not every time you want to create an auto command. A good place to put this is in RobotContainer along with your subsystems.
@@ -116,8 +135,10 @@ public class RobotContainer {
             s_Swerve::getPose, // Pose2d supplier
             s_Swerve::resetOdometry, // Pose2d consumer, used to reset odometry at the beginning of auto
             Constants.Swerve.swerveKinematics, // SwerveDriveKinematics
-            new PIDConstants(5.0, 0.0, 0.0), // PID constants to correct for translation error (used to create the X and Y PID controllers)
-            new PIDConstants(0.5, 0.0, 0.0), // PID constants to correct for rotation error (used to create the rotation controller)
+            // normal is 5.0
+            new PIDConstants(1.0, 0.0, 0.0), // PID constants to correct for translation error (used to create the X and Y PID controllers)
+            // normal is 0.5
+            new PIDConstants(1.0, 0.0, 0.0), // PID constants to correct for rotation error (used to create the rotation controller)
             s_Swerve::setModuleStates, // Module states consumer used to output to the drive subsystem
             eventMap,
             true, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true
