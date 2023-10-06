@@ -8,6 +8,7 @@ import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.auto.PIDConstants;
 import com.pathplanner.lib.auto.SwerveAutoBuilder;
 
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -22,6 +23,7 @@ import frc.robot.commands.Arms.lower.lRun;
 import frc.robot.commands.Arms.upper.uGo;
 import frc.robot.commands.Arms.upper.uRun;
 import frc.robot.commands.drive.TeleopSwerve;
+import frc.robot.commands.drive.TurnToDeg;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.Arms.lower;
 import frc.robot.subsystems.Arms.upper;
@@ -75,6 +77,15 @@ public class RobotContainer {
         m_chooser.addOption("PCB RL", getPathPlannerCommand("PCB RL"));
         m_chooser.addOption("PCB RR", getPathPlannerCommand("PCB RR"));
         m_chooser.addOption("Dont click unless you know what", getPathPlannerCommand("Accident"));
+        m_chooser.addOption("turn 2", getPathPlannerCommand("90 turn"));
+        m_chooser.addOption("Turn 90", new TeleopSwerve(
+            s_Swerve, 
+            () -> 0, 
+            () -> 0, 
+            () -> -90, // possible fix for rotation
+            () -> false
+        ));
+        m_chooser.addOption("New New", getPathPlannerCommand("New New Path"));
         //m_chooser.setDefaultOption("idk path", getPathPlannerCommand("New Path"));
         //m_chooser.addOption("Eric's Path", getPathPlannerCommand("Eric's Path"));
         //m_chooser.addOption("Turn 90 deg?", getPathPlannerCommand("90 turn"));
@@ -137,9 +148,9 @@ public class RobotContainer {
             s_Swerve::resetOdometry, // Pose2d consumer, used to reset odometry at the beginning of auto
             Constants.Swerve.swerveKinematics, // SwerveDriveKinematics
             // normal is 5.0
-            new PIDConstants(1.0, 0.0, 0.0), // PID constants to correct for translation error (used to create the X and Y PID controllers)
+            new PIDConstants(5, 0.0, 0.0), // PID constants to correct for translation error (used to create the X and Y PID controllers)
             // normal is 0.5
-            new PIDConstants(1.0, 0.0, 0.0), // PID constants to correct for rotation error (used to create the rotation controller)
+            new PIDConstants(6, 0.0, 0.0), // PID constants to correct for rotation error (used to create the rotation controller)
             s_Swerve::setModuleStates, // Module states consumer used to output to the drive subsystem
             eventMap,
             true, // Should the path be automatically mirrored depending on alliance color. Optional, defaults to true

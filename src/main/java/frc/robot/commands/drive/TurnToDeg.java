@@ -1,5 +1,6 @@
 package frc.robot.commands.drive;
 
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Swerve;
@@ -23,22 +24,12 @@ public class TurnToDeg extends CommandBase
     @Override
     public void execute() 
     {
-        int getHeadingInt = (int) Math.round(m_swerve.getYaw().getDegrees()); // TODO: Test this call
-        DriverStation.reportWarning("Heading: " + getHeadingInt, false);
-        if (m_swerve.getYaw().getDegrees() != m_target)
-        {
-            if (m_isLeft){
-                //m_driveTrain.arcadeDrive(0.0, -0.3); TODO: Get values from TeleopSwerve() testing
-            }
-            else if (!m_isLeft){
-                //m_driveTrain.arcadeDrive(0.0, 0.3); TODO: Get values from TeleopSwerve() testing
-            }
-        }
+        m_swerve.drive(new Translation2d(0,0), m_target, false, false);
     }
     @Override
     public void end(boolean interrupted) 
     {
-        //m_driveTrain.arcadeDrive(0, 0); TODO: Get values from TeleopSwerve() testing
+        m_swerve.drive(new Translation2d(0,0), 0, false, false);
     }
 
     @Override
