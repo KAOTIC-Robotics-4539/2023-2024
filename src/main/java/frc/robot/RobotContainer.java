@@ -104,13 +104,13 @@ public class RobotContainer {
         final JoystickButton headOpen_start = new JoystickButton(coDriver, XboxController.Button.kRightBumper.value);  
         final JoystickButton headClose_Back = new JoystickButton(coDriver, XboxController.Button.kLeftBumper.value);
         final JoystickButton resetButton = new JoystickButton(driver, XboxController.Button.kX.value);
-        final JoystickButton armPickupButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
-        final JoystickButton armPickupButton2 = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+        //final JoystickButton armPickupButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+        //final JoystickButton armPickupButton2 = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
         headClose_Back.whileTrue(new setIntake(0.7, s_Swerve));
         headOpen_start.whileTrue(new setIntake(-0.5, s_Swerve));
         resetButton.onTrue(new ResetPosition(s_Swerve));
-        armPickupButton.onTrue(new uGo(1, 170000, m_upperArm, false));
-        armPickupButton2.onTrue(new lGo(1, 179000, m_lowerArm, false));
+        //armPickupButton.onTrue(new uGo(1, 170000, m_upperArm, false));
+        //armPickupButton2.onTrue(new lGo(1, 179000, m_lowerArm, false));
     }
 
 
