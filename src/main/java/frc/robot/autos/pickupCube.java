@@ -11,9 +11,9 @@ import frc.robot.subsystems.Arms.lower;
 import frc.robot.subsystems.Arms.upper;
 import edu.wpi.first.wpilibj2.command.Commands;
 
-public class placeCone extends SequentialCommandGroup 
+public class pickupCube extends SequentialCommandGroup 
 {
-    public placeCone(lower lower, upper upper, Swerve m_driveTrain)
+    public pickupCube(lower lower, upper upper, Swerve m_driveTrain)
     {
         addCommands(
             // set arms to place position

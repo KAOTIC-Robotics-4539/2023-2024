@@ -2,11 +2,13 @@ package frc.robot;
 import java.util.HashMap;
 import java.util.List;
 
+import com.fasterxml.jackson.core.sym.Name;
 import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.auto.PIDConstants;
 import com.pathplanner.lib.auto.SwerveAutoBuilder;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -14,8 +16,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.autos.placeCone;
+import frc.robot.autos.placeConeUpper;
+import frc.robot.autos.placeCubeUpper;
 import frc.robot.commands.*;
 import frc.robot.commands.Arms.setIntake;
 import frc.robot.commands.Arms.lower.lGo;
@@ -71,7 +75,10 @@ public class RobotContainer {
         configureButtonBindings();
         SmartDashboard.putData("Auto Mode", m_chooser);
         // To add a new option: The first string is whatever you want to call it, the second must be the exact name of the file without .path
-        m_chooser.setDefaultOption("Place Upper Cone", new placeCone(m_lowerArm, m_upperArm, s_Swerve));
+        m_chooser.setDefaultOption("Place Upper Cone", new placeConeUpper(m_lowerArm, m_upperArm, s_Swerve));
+        m_chooser.addOption("Place Cube Upper", new placeCubeUpper(m_lowerArm, m_upperArm, s_Swerve));
+        m_chooser.addOption("Eric's Path", getPathPlannerCommand("Eric's Path"));
+        m_chooser.addOption("Auto 1", getPathPlannerCommand("90 turn"));
         m_chooser.addOption("PCB BL", getPathPlannerCommand("PCB BL"));
         m_chooser.addOption("PCB BR", getPathPlannerCommand("PCB BR"));
         m_chooser.addOption("PCB RL", getPathPlannerCommand("PCB RL"));
@@ -85,7 +92,7 @@ public class RobotContainer {
             () -> -90, // possible fix for rotation
             () -> false
         ));
-        m_chooser.addOption("New New", getPathPlannerCommand("New New Path"));
+        m_chooser.addOption("New Path", getPathPlannerCommand("New Path"));
         //m_chooser.setDefaultOption("idk path", getPathPlannerCommand("New Path"));
         //m_chooser.addOption("Eric's Path", getPathPlannerCommand("Eric's Path"));
         //m_chooser.addOption("Turn 90 deg?", getPathPlannerCommand("90 turn"));
@@ -109,6 +116,7 @@ public class RobotContainer {
         headClose_Back.whileTrue(new setIntake(0.7, s_Swerve));
         headOpen_start.whileTrue(new setIntake(-0.5, s_Swerve));
         resetButton.onTrue(new ResetPosition(s_Swerve));
+        
         //armPickupButton.onTrue(new uGo(1, 170000, m_upperArm, false));
         //armPickupButton2.onTrue(new lGo(1, 179000, m_lowerArm, false));
     }
@@ -120,10 +128,15 @@ public class RobotContainer {
         HashMap<String, Command> eventMap = new HashMap<>();
         switch (name){
             case "New Path":
-                // eventMap.put("marker1", new PrintCommand("Passed marker 1"));
+                // add events
+                    new WaitCommand(4);
+                    eventMap.put("event", new placeConeUpper(m_lowerArm, m_upperArm, s_Swerve));
+                    new WaitCommand(4);
                 break;
             case "Eric's Path":
                 // add events
+                new ParallelCommandGroup(new WaitCommand(5), new placeConeUpper(m_lowerArm, m_upperArm, s_Swerve));
+                //eventMap.put("event", new upper(: -.2));
                 break;
             case "90 turn":
                 // add events
@@ -132,14 +145,14 @@ public class RobotContainer {
                 break;
             case "Auto 1":
                 // add events
-                eventMap.put("event1", new placeCone(m_lowerArm, m_upperArm, s_Swerve));
+                eventMap.put("event1", new placeConeUpper(m_lowerArm, m_upperArm, s_Swerve));
                 break;
             default:
                 break;
         }
         // catch all
         if (name.contains("PCB ")){
-            eventMap.put("event1", new placeCone(m_lowerArm, m_upperArm, s_Swerve));
+            eventMap.put("event1", new placeConeUpper(m_lowerArm, m_upperArm, s_Swerve));
         }
        
 // Create the AutoBuilder. This only needs to be created once when robot code starts, not every time you want to create an auto command. A good place to put this is in RobotContainer along with your subsystems.
