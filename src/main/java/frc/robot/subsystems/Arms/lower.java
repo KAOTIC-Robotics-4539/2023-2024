@@ -40,11 +40,11 @@ public class lower extends SubsystemBase
         {
           if (m_lowerArm.getSelectedSensorPosition() > Constants.lowerArmMin)
           {
-            m_lowerArm.set(-speed/2);
+            m_lowerArm.set(-speed*0.75);
           }
           else
           {
-            m_lowerArm.set(0.20);
+            m_lowerArm.set(0.15);
           }
         }
         /* if Negative */
@@ -52,11 +52,11 @@ public class lower extends SubsystemBase
         {
           if (m_lowerArm.getSelectedSensorPosition() < Constants.lowerArmMax)
           {
-            m_lowerArm.set(-speed/2);
+            m_lowerArm.set(-speed*0.75);
           }
           else
           {
-            m_lowerArm.set(-0.20);
+            m_lowerArm.set(-0.15);
           }
         }
       }

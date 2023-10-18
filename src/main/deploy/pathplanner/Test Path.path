@@ -2,13 +2,13 @@
   "waypoints": [
     {
       "anchorPoint": {
-        "x": 1.7977873330924976,
-        "y": 0.491724692436545
+        "x": 1.7763183603290305,
+        "y": 0.39503184775600464
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.8904761404387282,
-        "y": 0.491724692436545
+        "x": 2.959214777065573,
+        "y": 0.42359300358346536
       },
       "holonomicAngle": 180.0,
       "isReversal": false,
@@ -16,28 +16,30 @@
       "isLocked": false,
       "isStopPoint": false,
       "stopEvent": {
-        "names": [],
+        "names": [
+          "PlaceCone"
+        ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
-        "waitTime": 0
+        "waitTime": 5.0
       }
     },
     {
       "anchorPoint": {
-        "x": 3.0442522511293237,
-        "y": 0.606079272072952
+        "x": 5.04545739476643,
+        "y": 0.7089983937457166
       },
       "prevControl": {
-        "x": 3.015663606220222,
-        "y": 0.6003615430911314
+        "x": 4.4966286258962755,
+        "y": 0.5964181334646579
       },
       "nextControl": {
-        "x": 3.0728408960384255,
-        "y": 0.6117970010547725
+        "x": 5.491440255348414,
+        "y": 0.8004820574548427
       },
-      "holonomicAngle": 88.15238973400544,
+      "holonomicAngle": 0.0,
       "isReversal": false,
-      "velOverride": null,
+      "velOverride": 1.0,
       "isLocked": false,
       "isStopPoint": false,
       "stopEvent": {
@@ -49,33 +51,31 @@
     },
     {
       "anchorPoint": {
-        "x": 4.702393655857212,
-        "y": 0.7776111415275606
+        "x": 6.337664144657818,
+        "y": 0.8805302632003253
       },
       "prevControl": {
-        "x": 3.887617275947819,
-        "y": 0.6947040712911665
+        "x": 5.708713956657585,
+        "y": 0.7890465994912005
       },
       "nextControl": null,
-      "holonomicAngle": 0,
+      "holonomicAngle": 0.0,
       "isReversal": false,
       "velOverride": null,
       "isLocked": false,
       "isStopPoint": false,
       "stopEvent": {
-        "names": [],
-        "executionBehavior": "parallel",
+        "names": [
+          "pickupCube"
+        ],
+        "executionBehavior": "parallelDeadline",
         "waitBehavior": "none",
-        "waitTime": 0
+        "waitTime": 2.0
       }
     }
   ],
-  "markers": [
-    {
-      "position": 0.0,
-      "names": [
-        "event"
-      ]
-    }
-  ]
+  "maxVelocity": 4.0,
+  "maxAcceleration": 3.0,
+  "isReversed": null,
+  "markers": []
 }

@@ -18,16 +18,15 @@ public class placeCubeUpper extends SequentialCommandGroup
         addCommands(
             // set arms to place position
             Commands.parallel(
-                new lGo(1, 160000, lower, false),
-                new uGo(0.75, 145000, upper, false)
+                new lGo(1.3, 160000, lower, false),
+                new uGo(1, 145000, upper, false)
             ),
             // place cone
             new setIntake(-0.5, m_driveTrain).withTimeout(0.5),
-            //new WaitCommand(0.25),
             // set arms back to normal, maybe 0 them?
             Commands.parallel(
-                new uGo(1, 250, upper, false),
-                new lGo(0.75, 250, lower, false)
+                new uGo(1.3, 2000, upper, false),
+                new lGo(1, 8000, lower, false)
             )
         );
     }

@@ -30,7 +30,7 @@ public class lGo extends CommandBase
     @Override
     public void execute() {
         SmartDashboard.putNumber("Lower Arm Rev", m_lowerarm.getEncoder());
-        if ((m_lowerarm.getEncoder() > m_target - 300) && (m_lowerarm.getEncoder() < m_target + 300))
+        if ((m_lowerarm.getEncoder() > m_target - 1000) && (m_lowerarm.getEncoder() < m_target + 1000))
         {
             Finished = true;
         }

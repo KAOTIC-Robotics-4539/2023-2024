@@ -30,7 +30,7 @@ public class uGo extends CommandBase
     @Override
     public void execute() {
         SmartDashboard.putNumber("Upper Arm Rev", m_upperarm.getEncoder());
-        if ((m_upperarm.getEncoder() > m_target - 300) && (m_upperarm.getEncoder() < m_target + 300))
+        if ((m_upperarm.getEncoder() > m_target - 1000) && (m_upperarm.getEncoder() < m_target + 1000))
         {
             Finished = true;
         }

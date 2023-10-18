@@ -18,17 +18,15 @@ public class placeCubeMiddle extends SequentialCommandGroup
         addCommands(
             // set arms to place position
             Commands.parallel(
-                new lGo(0.95, 160000, lower, false),
-                new uGo(0.65, 145000, upper, false)
+                new lGo(1.3, 73000, lower, false),
+                new uGo(1, 73000, upper, false)
             ),
             // place cone
-            new WaitCommand(1),
-            new setIntake(0.7, m_driveTrain).withTimeout(0.5),
-            new WaitCommand(0.25),
+            new setIntake(-0.5, m_driveTrain).withTimeout(0.5),
             // set arms back to normal, maybe 0 them?
             Commands.parallel(
-                new uGo(0.95, 250, upper, false),
-                new lGo(0.75, 250, lower, false)
+                new uGo(1.3, 2000, upper, false),
+                new lGo(1, 8000, lower, false)
             )
         );
     }
