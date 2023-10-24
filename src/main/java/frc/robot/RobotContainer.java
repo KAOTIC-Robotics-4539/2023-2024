@@ -9,6 +9,7 @@ import com.pathplanner.lib.auto.PIDConstants;
 import com.pathplanner.lib.auto.SwerveAutoBuilder;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,6 +26,7 @@ import frc.robot.commands.Arms.setIntake;
 import frc.robot.commands.Arms.lower.lRun;
 import frc.robot.commands.Arms.upper.uRun;
 import frc.robot.commands.drive.TeleopSwerve;
+import frc.robot.commands.drive.brakeCommand;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.Arms.lower;
 import frc.robot.subsystems.Arms.upper;
@@ -99,12 +101,13 @@ public class RobotContainer {
         final JoystickButton headOpen_start = new JoystickButton(coDriver, XboxController.Button.kRightBumper.value);  
         final JoystickButton headClose_Back = new JoystickButton(coDriver, XboxController.Button.kLeftBumper.value);
         final JoystickButton resetButton = new JoystickButton(driver, XboxController.Button.kX.value);
+        final JoystickButton brakeButtonTest = new JoystickButton(driver, XboxController.Button.kB.value);
         //final JoystickButton armPickupButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
         //final JoystickButton armPickupButton2 = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
         headClose_Back.whileTrue(new setIntake(0.7, s_Swerve));
         headOpen_start.whileTrue(new setIntake(-0.5, s_Swerve));
         resetButton.onTrue(new ResetPosition(s_Swerve));
-        
+        brakeButtonTest.whileTrue(new brakeCommand(s_Swerve));
         //armPickupButton.onTrue(new uGo(1, 170000, m_upperArm, false));
         //armPickupButton2.onTrue(new lGo(1, 179000, m_lowerArm, false));
     }
