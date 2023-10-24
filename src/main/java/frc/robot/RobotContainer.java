@@ -72,10 +72,10 @@ public class RobotContainer {
         configureButtonBindings();
         SmartDashboard.putData("Auto Mode", m_chooser);
         // To add a new option: The first string is whatever you want to call it, the second must be the exact name of the file without .path
-        m_chooser.setDefaultOption("PCB BM", getPathPlannerCommand("PCB BM"));
+        m_chooser.setDefaultOption("Middle", getPathPlannerCommand("Middle"));
         m_chooser.addOption("PCB RM", getPathPlannerCommand("PCB RM"));
-        m_chooser.addOption("PCB BL", getPathPlannerCommand("PCB BL"));
-        m_chooser.addOption("PCB BR", getPathPlannerCommand("PCB BR"));
+        m_chooser.addOption("Inside", getPathPlannerCommand("Inside"));
+        m_chooser.addOption("Outside", getPathPlannerCommand("Outside"));
         m_chooser.addOption("PCB RL", getPathPlannerCommand("PCB RL"));
         m_chooser.addOption("PCB RR", getPathPlannerCommand("PCB RR"));
         m_chooser.addOption("Dont click unless you know what", getPathPlannerCommand("Accident"));
@@ -125,13 +125,13 @@ public class RobotContainer {
                 new ParallelCommandGroup(new WaitCommand(5), new placeConeUpper(m_lowerArm, m_upperArm, s_Swerve));
                 //eventMap.put("event", new upper(: -.2));
                 break;
-            case "PCB BR":
+            case "Outside":
                 // add events
                 eventMap.put("PlaceCubeUpper", new placeCubeUpper(m_lowerArm, m_upperArm, s_Swerve));
                 eventMap.put("PickupCube", new pickupCube(m_lowerArm, m_upperArm, s_Swerve));
                 eventMap.put("PlaceCubeMiddle", new placeCubeMiddle(m_lowerArm, m_upperArm, s_Swerve));
                 break;
-            case "PCB BL":
+            case "Inside":
                 // add events
                 eventMap.put("PlaceCubeUpper", new placeCubeUpper(m_lowerArm, m_upperArm, s_Swerve));
                 eventMap.put("PickupCube", new pickupCube(m_lowerArm, m_upperArm, s_Swerve));
@@ -153,7 +153,7 @@ public class RobotContainer {
                 // add events
                 eventMap.put("PlaceCubeUpper", new placeCubeUpper(m_lowerArm, m_upperArm, s_Swerve));
                 break;
-            case "PCB BM":
+            case "Middle":
                 // add events
                 eventMap.put("PlaceCubeUpper", new placeCubeUpper(m_lowerArm, m_upperArm, s_Swerve));
                 break;

@@ -26,6 +26,31 @@
     },
     {
       "anchorPoint": {
+        "x": 12.112570416296325,
+        "y": 0.8119175154184826
+      },
+      "prevControl": {
+        "x": 12.890181557823889,
+        "y": 0.7318693096729988
+      },
+      "nextControl": {
+        "x": 11.304200257512418,
+        "y": 0.8951320905874135
+      },
+      "holonomicAngle": 0.0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
+        "waitBehavior": "none",
+        "waitTime": 0
+      }
+    },
+    {
+      "anchorPoint": {
         "x": 10.2,
         "y": 0.92
       },
@@ -47,6 +72,31 @@
           "PickupCube"
         ],
         "executionBehavior": "parallelDeadline",
+        "waitBehavior": "none",
+        "waitTime": 0
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 12.11,
+        "y": 0.81
+      },
+      "prevControl": {
+        "x": 11.627390194861366,
+        "y": 0.8275494474595866
+      },
+      "nextControl": {
+        "x": 12.738950188000235,
+        "y": 0.787129084072719
+      },
+      "holonomicAngle": 0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
         "waitBehavior": "none",
         "waitTime": 0
       }
