@@ -158,6 +158,7 @@ public class RobotContainer {
             case "Middle":
                 // add events
                 eventMap.put("PlaceCubeUpper", new placeCubeUpper(m_lowerArm, m_upperArm, s_Swerve));
+                eventMap.put("Balance", new balance(s_Swerve));
                 break;
             
             default:
