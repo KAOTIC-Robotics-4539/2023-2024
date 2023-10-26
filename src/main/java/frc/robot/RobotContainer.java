@@ -27,6 +27,7 @@ import frc.robot.commands.Arms.setIntake;
 import frc.robot.commands.Arms.lower.lRun;
 import frc.robot.commands.Arms.upper.uRun;
 import frc.robot.commands.drive.TeleopSwerve;
+import frc.robot.commands.drive.printCommand;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.Arms.lower;
 import frc.robot.subsystems.Arms.upper;
