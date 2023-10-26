@@ -20,12 +20,12 @@ public class pickupCube extends SequentialCommandGroup
         addCommands(
             // set arms to pickup position
             new ParallelDeadlineGroup(
-                new uGo(1.3, 116000, upper, false),
+                new uGo(1.3, 118000, upper, false),
                 // run intake
-                new setIntake(0.7, m_driveTrain).withTimeout(2)
+                new setIntake(0.7, m_driveTrain).withTimeout(2.05)
             ),
             // set arm back to normal
-            new uGo(1.3, 3000, upper, false)
+            new uGo(1.3, 6000, upper, false)
         );
     }
 
