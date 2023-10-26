@@ -23,11 +23,11 @@ public class balance extends CommandBase
     }
     @Override
     public void execute() {
-        if (m_driveTrain.getPitch() > 5.0){
-            m_driveTrain.drive(new Translation2d(0.1, 0).times(Constants.Swerve.maxSpeed), 0, false, true);
+        if (m_driveTrain.getPitch() > 10.0){
+            m_driveTrain.drive(new Translation2d(0.12, 0).times(Constants.Swerve.maxSpeed), 0, false, true);
         }
-        else if (m_driveTrain.getPitch() < -5.0){
-           m_driveTrain.drive(new Translation2d(-0.1, 0).times(Constants.Swerve.maxSpeed), 0, false, true);
+        else if (m_driveTrain.getPitch() < -10.0){
+           m_driveTrain.drive(new Translation2d(-0.12, 0).times(Constants.Swerve.maxSpeed), 0, false, true);
         }
         else{
             m_driveTrain.drive(new Translation2d(0, 0).times(Constants.Swerve.maxSpeed), 0, false, true);
