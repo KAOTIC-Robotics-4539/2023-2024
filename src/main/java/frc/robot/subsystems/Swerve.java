@@ -122,7 +122,7 @@ public class Swerve extends SubsystemBase {
 
     public double getPitch()
     {
-        return gyro.getPitch();
+        return gyro.getRoll();
     }
     /**
    * Function to set our intake's speed
@@ -137,6 +137,7 @@ public class Swerve extends SubsystemBase {
     public void periodic(){
         swerveOdometry.update(getYaw(), getModulePositions());  
         SmartDashboard.putNumber("PIGEON YAW: ", getYaw().getDegrees());
+        SmartDashboard.putNumber("Pitch", getPitch());
         for(SwerveModule mod : mSwerveMods){
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Cancoder", mod.getCanCoder().getDegrees());
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Integrated", mod.getPosition().angle.getDegrees());

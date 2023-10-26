@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.autos.balance;
 import frc.robot.autos.pickupCube;
 import frc.robot.autos.placeConeUpper;
 import frc.robot.autos.placeCubeMiddle;
@@ -74,6 +75,7 @@ public class RobotContainer {
         SmartDashboard.putData("Auto Mode", m_chooser);
         // To add a new option: The first string is whatever you want to call it, the second must be the exact name of the file without .path
         m_chooser.setDefaultOption("Middle", getPathPlannerCommand("Middle"));
+        m_chooser.addOption("Auto Balance", new balance(s_Swerve));
         m_chooser.addOption("PCB RM", getPathPlannerCommand("PCB RM"));
         m_chooser.addOption("Inside", getPathPlannerCommand("Inside"));
         m_chooser.addOption("Outside", getPathPlannerCommand("Outside"));
