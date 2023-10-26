@@ -1,4 +1,4 @@
-package frc.robot.commands.drive;
+package frc.robot.autos;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
@@ -34,7 +34,7 @@ public class balance extends CommandBase
 
     @Override
     public void end(boolean interrupted) {
-        m_driveTrain.drive(new Translation2d(0.4, 0).times(Constants.Swerve.maxSpeed), 0, false, true);
+        m_driveTrain.drive(new Translation2d(0, 0).times(Constants.Swerve.maxSpeed), 0, false, true);
     }
 
     @Override
