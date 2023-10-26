@@ -120,6 +120,10 @@ public class Swerve extends SubsystemBase {
         }
     }
 
+    public double getPitch()
+    {
+        return gyro.getPitch();
+    }
     /**
    * Function to set our intake's speed
    *
