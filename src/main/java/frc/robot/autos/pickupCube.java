@@ -22,7 +22,7 @@ public class pickupCube extends SequentialCommandGroup
             new ParallelDeadlineGroup(
                 new uGo(1.3, 118000, upper, false),
                 // run intake
-                new setIntake(0.7, m_driveTrain).withTimeout(2.1)
+                new setIntake(0.7, m_driveTrain).withTimeout(2.5)
             ),
             // set arm back to normal
             new uGo(1.3, 6000, upper, false)
